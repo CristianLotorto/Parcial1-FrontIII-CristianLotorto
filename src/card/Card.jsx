@@ -1,14 +1,14 @@
-import styleCard from "../card/Card.css";
+import styleCard from "../card/Card.module.css";
 
-function Card({userName, userLastName}) {
+function Card({userName, userLastName, render}) {
     
     return(
 
-        <div className="container">
+        <div className={render} >
 
-            <h2 className="title" >Hola {userName}!</h2>
+            <h2 className={styleCard.title} >Hola {userName}!</h2>
 
-            <p className="text">Tu nombre completo es: {userName} {userLastName}.</p>
+            <p className={styleCard}>Tu nombre completo es: {userName} {userLastName}.</p>
 
         </div>
 

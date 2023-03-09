@@ -1,6 +1,6 @@
-import styleApp from "../src/App.css";
+import styleApp from "../src/App.module.css";
+import styleCard from "../src/card/Card.module.css";
 import { useState } from "react";
-import Button from "./button/Button";
 import Card from "./card/Card";
 
 function App() {
@@ -8,27 +8,7 @@ function App() {
   const [ userName, setUserName ] = useState("");
   const [ lastName, setLastName ] = useState("");
   const [ error, setError] = useState("");
-  const [ render, setRender] = useState("render")
-
-  const handlerOnSubmit = (e) => {
-
-    e.preventDefault();
-
-    const userNameValid = validateUserName(userName);
-
-    const lastNameValid = validateLastName(lastName);
-
-    if(!userNameValid || !lastNameValid) {
-
-      setError("Por favor chequea que la información sea correcta")
-
-    }else {
-
-      setRender("container");
-
-    }
-
-  }
+  const [ render, setRender] = useState(styleCard.render)
 
   const handlerOnChangeUserName = (e) => {
     
@@ -74,60 +54,79 @@ function App() {
     }
 
   };
-  
 
+  const handlerOnSubmit = (e) => {
 
+    e.preventDefault();
+
+    const userNameValid = validateUserName(userName);
+
+    const lastNameValid = validateLastName(lastName);
+
+    if(!userNameValid || !lastNameValid) {
+
+      setError("Por favor chequea que la información sea correcta")
+
+    }else {
+
+      setError("");
+
+      setRender(styleCard.container);
+
+    }
+
+  }
 
 
   return (
     
-    <>
-    <div className="form">
-      
-      
-      <h1 className="title">Examen Front III - Cristian Lotorto</h1>
+    <div className={styleApp.container}>
 
-      <form onSubmit = {handlerOnSubmit} >
-
-        <input 
-        
-        type = "text"
-        placeholder = " Enter User Name"
-        value = { userName }
-        onChange = { handlerOnChangeUserName } 
-        
-        />
-
-        <input 
-        
-        type = "text"
-        placeholder = " Enter Lastname"
-        value = { lastName }
-        onChange = { handlerOnChangeLastName }
-
-        />
-
-      <p> {error} </p>
-      </form>
+      <div className={styleApp.formContainer}>
 
 
-      <Button 
-      
-      text= "Send" 
-      type="submit" 
+        <h1 className={styleApp.formTitle}>Examen Front III - Cristian Lotorto</h1>
+
+        <form className={styleApp.form} onSubmit = {handlerOnSubmit} >
+
+          <input 
+
+          type = "text"
+          placeholder = " Enter User Name"
+          value = { userName }
+          onChange = { handlerOnChangeUserName } 
+
+          />
+
+          <input 
+
+          type = "text"
+          placeholder = " Enter Lastname"
+          value = { lastName }
+          onChange = { handlerOnChangeLastName }
+
+          />
+
+          <p className={styleApp.error}> {error} </p>
+
+          <button className={styleApp.button} type="submit">
+            Send
+          </button>
+        </form>
+
+
+
+      </div>
+
+      <Card 
+
+      render={render}
+      userName= { userName } 
+      userLastName = { lastName }
 
       />
 
     </div>
-
-    <Card 
-  
-    userName= { userName } 
-    userLastName = { lastName }
-
-    />
-
-    </>
     
     
   );
