@@ -8,7 +8,7 @@ function Card({userName, userLastName, render}) {
 
             <h2 className={styleCard.title} >Hola {userName}!</h2>
 
-            <p className={styleCard}>Tu nombre completo es: {userName} {userLastName}.</p>
+            <p className={styleCard}>Tu nombre completo es: <span className={styleCard.fullName}>{userName} {userLastName}</span></p>
 
         </div>
 
