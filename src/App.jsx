@@ -92,7 +92,7 @@ function App() {
           <input 
 
           type = "text"
-          placeholder = " Enter User Name"
+          placeholder = " Enter Name"
           value = { userName }
           onChange = { handlerOnChangeUserName } 
 
@@ -101,7 +101,7 @@ function App() {
           <input 
 
           type = "text"
-          placeholder = " Enter Lastname"
+          placeholder = " Enter Last Name"
           value = { lastName }
           onChange = { handlerOnChangeLastName }
 
